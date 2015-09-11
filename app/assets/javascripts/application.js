@@ -11,5 +11,17 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require_tree .
+//= require self
+
+$(document).ready(funtion() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  todo_list = new TodoList(document.body);
+  todo_list.render();
+  todo_list.loadItems();
+});
